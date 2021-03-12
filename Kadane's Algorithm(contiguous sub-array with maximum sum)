@@ -1,0 +1,25 @@
+class Solution{
+    
+    int maxSubarraySum(int arr[], int n){
+        
+        
+        //Initilize max_end_here(meh) = 0;
+        //Initilize max_so_far(msf) = -infinity;
+        
+        int meh = 0;
+        int msf = Integer.MIN_VALUE;
+        
+        for(int i=0;i<n;i++)
+        {
+            meh = meh + arr[i];
+            
+            if(meh < arr[i])
+                meh = arr[i];
+            if(msf < meh)
+                msf = meh;
+        }
+        
+        return msf;
+    }
+    
+}
