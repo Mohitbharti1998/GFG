@@ -1,0 +1,21 @@
+class Solution {
+    int MissingNumber(int arr[], int n) {
+        // Your Code Here
+        int len = arr.length;
+        
+        HashSet<Integer> hs = new HashSet<>();
+        
+        for(int i=0;i<len;i++)
+        {
+            hs.add(arr[i]);
+        }
+        
+        for(int i=1;i<=n;i++)
+        {
+            if(!hs.contains(i))
+                return i;
+        }
+        
+        return 0;
+    }
+}
