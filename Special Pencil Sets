@@ -1,0 +1,85 @@
+Special Pencil Sets
+Amit decided to buy K sets of pencils. Each set consists of one or more pencils. Each pencil has a positive length, which is expressed as an integer number of millimeters. The store sells N sets of pencils. After the boy buys exactly K sets, he comes home and puts all the pencils in one box.
+
+The strange man will be very happy if the difference in length between the largest and smallest pencils in this box is minimal. Therefore, he asks you to help him: choose from N sets of pencils exactly K sets so that the difference between the maximum and minimum among all purchased pencils is as small as possible.
+
+Input format
+The first line contains two natural numbers N, K - the number of pencil sets available in the store and the number of sets required by Amit.
+Each of the next N lines contains ci - the number of pencils in the set.
+Then, in the same line, there follow ci natural numbers aij - the lengths of the pencils in the ith set.
+It is guaranteed that the sum of all ci does not exceed 2×10^5.
+
+Output format
+Print on a single line the smallest difference that can be achieved between the maximum and minimum purchased pencils.
+
+
+Time Limit
+1 second
+
+Example
+Input
+3 2
+3 1 3 4
+3 5 1 2
+1 4
+
+Output
+3
+
+Sample test case Explanation
+The difference between the minimum and maximum is 3 if he chooses set 1 and 3.
+
+
+Solutions :-
+
+
+#include <bits/stdc++.h>
+using namespace std;
+#define pii pair<int,int>
+
+int main()
+{
+  //write your code here
+  int n,k;
+  cin >> n >> k;
+  vector<pii>v;
+  for(int i=0;i<n;i++)
+  {
+    int to;
+    cin >> to;
+    int a,b;
+    for(int j=0;j<to;j++)
+    {
+      int x;
+      cin >> x;
+      if(j==0)
+      {
+        a=x;
+        b=x;
+      }
+      else{
+        a=min(a,x);
+        b=max(b,x);
+      }
+    }
+    v.push_back(make_pair(a,b));
+  }
+  sort(v.begin(),v.end());
+  priority_queue <int> pq;
+  int arr[n];
+  for(int i=(n-1);i>=0;i--)
+  {
+    if(pq.size()==k)pq.pop();
+    pq.push(v[i].second);
+    arr[i]=pq.top();
+    
+  }
+  int ans= arr[0] - v[0].first;
+  for(int j=0;(j+k-1)<n;j++)
+  {
+    ans=min(ans,arr[j]-v[j].first);
+  }
+  cout << ans;
+  
+  return 0;
+}
