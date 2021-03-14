@@ -1,0 +1,87 @@
+Laughing Manager
+The manager likes to laugh a lot. He decides to study his laugh. He believes that laughter is a sequence of alternating letters "a" and "h".
+For example, "ahahaha", "hah", "a" are laughter but "abacaba" and "hh" are not.
+The manager speaks very quickly, so all his words merge into one big word. For research, he wants to understand how long he can laugh. He has a line - a recording of a conversation. He wants to know the maximum length of laughter in this conversation. He asks you to help him with this task.
+
+Input format
+The first line of the input file contains one natural number 
+n
+- length of the one big word.
+The second line contains a string of lowercase Latin letters of length 
+n
+.
+
+Output format
+Print one number the maximum length of laughter.
+
+Constraints
+1
+≤
+n
+≤
+10
+5
+
+Time Limit
+1 second
+
+Example
+Input 1
+5
+ahaha
+
+Output 1
+5
+
+Input 2
+5
+abhab
+
+Output 2
+2
+
+Sample test case explanation
+In the first case
+"ahaha" is laughter, so the length is 
+5
+.
+
+In the second case
+"ha" is a laugher with maximum length, so the answer is 
+2
+.
+
+
+
+Solution :- 
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+  public static void main(String args[]) throws IOException {
+    
+    //write your code here
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    String s=sc.next();
+    int length=1;
+    int max=1;
+    for(int i=0;i<n-1;i++)
+    {
+      if(s.charAt(i)=='a' && s.charAt(i+1)=='h' || s.charAt(i)=='h' && s.charAt(i+1)=='a')
+      {
+        length++;
+        max=Math.max(max,length);
+        
+      }
+      else
+      {
+        length=1;
+      }
+      
+    }
+    System.out.println(max);
+    
+  }
+}
