@@ -1,0 +1,67 @@
+Friends and Enemies
+There are n persons standing in a line. You can choose any subarray and assign each person as a friend or enemy. Each person has a strength. To keep yourself safe, the sum of the strengths of your friends should be equal to the sum of your enemies. Now find out how many different such subarrays are possible.
+
+Note: Two subarrays are different if the starting and ending index is different or the assignment of friends and enemies is different. Print the answer modulo 10^9+7.
+
+Input format
+The first line of input contains n, the number of persons.
+The second line contains n space-separated integers.
+
+Output format
+Print a single line with the answer modulo 10^9+7.
+
+Time Limit
+1 second
+
+Example
+Input
+3
+1 1 1
+
+Output
+4
+
+Sample test case explanation
+
+The subarray is [1,−1],[−1,1]  for subarray 0 to 1 and similarly 2 more similar subarrays from 1 to 2. Where 1 is friend and -1 is enemy.
+So the answer is 4.
+
+
+Solution :-
+
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+  public static void main(String args[]) throws IOException {
+    
+   BufferedReader bu=new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb=new StringBuilder();
+        int n=Integer.parseInt(bu.readLine()),i,a[]=new int[n];
+        String s[]=bu.readLine().split(" ");
+        for(i=0;i<n;i++)
+        a[i]=Integer.parseInt(s[i]);
+
+        HashMap<Integer,Long> hm=new HashMap<>();
+        long ans=0,M=1000000007;
+        for(i=0;i<n;i++)
+        {
+            HashMap<Integer,Long> t=new HashMap<>();
+            hm.put(0,hm.getOrDefault(0,0l)+1);
+            for(int x:hm.keySet())
+            {
+                long y=hm.get(x);
+                int k=x-a[i];
+                t.put(k,(t.getOrDefault(k,0l)+y)%M);
+                k=x+a[i];
+                t.put(k,(t.getOrDefault(k,0l)+y)%M);
+            }
+            hm=t;
+            ans=(ans+hm.getOrDefault(0,0l))%M;
+        }
+        System.out.print(ans);
+    
+  }
+}
