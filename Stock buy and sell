@@ -1,0 +1,67 @@
+The cost of stock on each day is given in an array A[] of size N. Find all the days on which you buy and sell the stock so that in between those days your profit is maximum.
+
+Example 1:
+
+Input:
+N = 7
+A[] = {100,180,260,310,40,535,695}
+Output:
+(0 3) (4 6)
+Explanation:
+We can buy stock on day 0,
+and sell it on 3rd day, which will 
+give us maximum profit. Now, we buy 
+stock on day 4 and sell it on day 6.
+
+
+
+class Solution{
+    //Function to find the days of buying and selling stock for max profit.
+    ArrayList<ArrayList<Integer> > stockBuySell(int A[], int n) {
+        // code here
+        
+        ArrayList<ArrayList<Integer>> sol = new ArrayList<ArrayList<Integer>>();
+        
+        if(n == 1)
+            return sol;
+            
+        
+        
+        
+        int i = 0;
+        
+        while(i < n-1)
+        {
+            
+            while( (i < n - 1) && A[i] >= A[i+1]) // Find local minima 
+                i++;
+                
+                
+            if(i == n-1)
+                break;
+                
+                
+            ArrayList<Integer>  arr = new ArrayList<>(); 
+            
+            arr.add(i);
+            
+            i++;
+            
+            while((i<n) && A[i] >= A[i-1]) //Find local Maxima
+                i++;
+            
+            
+            arr.add(i-1);
+            
+            sol.add(arr);
+            
+            
+            
+        }
+        
+        return sol;
+        
+        
+        
+    }
+}
