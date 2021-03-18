@@ -1,0 +1,97 @@
+Given an array of size N containing only 0s, 1s, and 2s; sort the array in ascending order.
+
+
+Example 1:
+
+Input: 
+N = 5
+arr[]= {0 2 1 2 0}
+Output:
+0 0 1 2 2
+Explanation:
+0s 1s and 2s are segregated 
+into ascending order.
+
+
+Expected Time Complexity: O(N)
+Expected Auxiliary Space: O(1)
+
+
+
+class Solution
+{
+    //Method - 1
+    //Mid Approach
+    
+    public static void sort012(int a[],int n)
+    {
+        int l = 0;
+        int m = 0;
+        int h = n-1;
+        
+        while(m<=h)
+        {
+            if(a[m] == 0)
+            {
+                int temp = a[l];
+                a[l] = a[m];
+                a[m] = temp;
+                l++;
+                m++;
+            }
+            else if(a[m] == 1)
+                m++;
+            else
+            {
+                int temp = a[m];
+                a[m] = a[h];
+                a[h] = temp;
+                h--;
+            }
+        }
+    }
+    
+    //Method - 2
+    public static void Method2(int a[], int n)
+    {
+        // code here 
+        
+        int zeros = 0;
+        int ones = 0;
+        int tows = 0;
+        
+        
+        for(int i=0;i<n;i++)
+        {
+            if(a[i] == 0)
+                zeros++;
+            else if(a[i] == 1)
+                ones++;
+            else
+                tows++;
+        }
+        
+        
+        int i = 0;
+        
+        while(zeros != 0)
+        {
+            a[i++] = 0;
+            zeros--;
+        }
+        
+        while(ones != 0)
+        {
+            a[i++] = 1;
+            ones--;
+        }
+        
+        while(i<n)
+        {
+            a[i++] = 2;
+            
+        }
+    }
+    
+   
+}
