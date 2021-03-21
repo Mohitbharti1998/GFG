@@ -1,0 +1,59 @@
+Given a string S. The task is to print all permutations of a given string.
+
+ 
+
+Example 1:
+
+Input: ABC
+Output:
+ABC ACB BAC BCA CAB CBA
+Explanation:
+Given string ABC has permutations in 6 
+forms as ABC, ACB, BAC, BCA, CAB and CBA 
+
+
+
+class Solution {
+
+
+    ArrayList<String> list = new ArrayList<>();
+    
+    private  String swap(String a, int i, int j) 
+    { 
+        char temp; 
+        char[] charArray = a.toCharArray(); 
+        temp = charArray[i] ; 
+        charArray[i] = charArray[j]; 
+        charArray[j] = temp; 
+        return String.valueOf(charArray); 
+    } 
+
+    
+    private void permute(String str,int l,int r)
+    {
+        if(l == r)
+            list.add(str);
+        else
+        {
+            for(int i=l;i<=r;i++)
+            {
+                str = swap(str,l,i);
+                permute(str,l+1,r);
+                str = swap(str,l,i);
+            }
+        }
+        
+    }
+    
+    
+    public List<String> find_permutation(String S) {
+        // Code here
+        
+        permute(S,0,S.length() - 1);
+        
+        Collections.sort(list); //optional because test case not passed if you not sort alphabetically
+        
+        return list;
+        
+    }
+}
