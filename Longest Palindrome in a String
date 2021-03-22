@@ -1,0 +1,76 @@
+Given a string S, find the longest palindromic substring in S. Substring of string S: S[ i . . . . j ] where 0 ≤ i ≤ j < len(S). Palindrome string: A string which reads the same backwards. More formally, S is palindrome if reverse(S) = S. Incase of conflict, return the substring which occurs first ( with the least starting index ).
+
+NOTE: Required Time Complexity O(n2).
+
+Input:
+The first line of input consists number of the testcases. The following T lines consist of a string each.
+
+Output:
+In each separate line print the longest palindrome of the string given in the respective test case.
+
+Constraints:
+1 ≤ T ≤ 100
+1 ≤ Str Length ≤ 104
+
+Example:
+Input:
+1
+aaaabbaa
+
+Output:
+aabbaa
+
+
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class GFG {
+    
+    public static int check(String str)
+    {
+        StringBuilder sb = new StringBuilder(str);
+        sb.reverse();
+        
+        String str2 = sb.toString();
+        
+        if(str.equals(str2))
+            return str.length();
+        else
+            return 0;
+        
+        
+    }
+    
+    
+	public static void main (String[] args) {
+		//code
+		
+		Scanner sc = new Scanner(System.in);
+		
+		int t = sc.nextInt();
+		
+		for(int k=1;k<=t;k++)
+		{
+		    String str = sc.next();
+		    String s = "";
+		    int max = 0;
+		    for(int i=0;i<str.length();i++)
+		    {
+		        for(int j=i+1;j<=str.length();j++)
+		        {
+		            int a = check(str.substring(i,j));
+		            if(max < a)
+		               {
+		                   max = a;
+		                   s = str.substring(i,j);
+		               }
+		        }
+		    }
+		    
+		    System.out.println(s);
+		}	
+	}
+}
