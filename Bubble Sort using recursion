@@ -1,0 +1,33 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+
+  public static void bublleSort(int[] arr,int si,int li)
+  {
+    if(si == li)
+      return;
+    if(arr[si] > arr[si+1])
+    {
+      int temp = arr[si];
+      arr[si] = arr[si+1];
+      arr[si+1] = temp;
+    }
+    bublleSort(arr, si+1, li);
+    bublleSort(arr, si, li-1);
+  }
+
+  public static void main(String args[]) throws IOException {
+
+    int[] arr = {50,5,60,20,1000};
+
+    bublleSort(arr, 0, arr.length-1);
+
+    for(int i : arr)
+    {
+      System.out.println(i);
+    }
+    
+  }
+}
