@@ -1,0 +1,25 @@
+import java.util.*;
+import java.io.*;
+
+public class Main {
+
+  public static int lastIndex(int[] arr,int si,int data){
+    if(si == arr.length)
+      return -1;
+    if(arr[si] == data)
+    {
+      int result = Math.max(si, lastIndex(arr, si+1, data));
+      return result;
+    }
+    else
+    {
+      return lastIndex(arr, si+1, data);
+    }
+  }
+  public static void main(String args[]) throws IOException {
+
+    int[] arr = {3,8,1,8,0,7};
+    System.out.println(lastIndex(arr,0,8));
+    
+  }
+}
