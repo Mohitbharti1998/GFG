@@ -1,0 +1,46 @@
+
+class Solution{
+    
+    public static int partition(int[] arr,int l,int r)
+    {
+        int pivot = arr[r];
+        int i = l - 1;
+        for(int j=l;j<=r-1;j++)
+        {
+            if(pivot >= arr[j])
+            {
+                i++;
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        
+        i++;
+        
+        int temp = arr[i];
+        arr[i] = arr[r];
+        arr[r] = temp;
+        
+        
+        return i;
+        
+    }
+    
+    public static int kthSmallest(int[] arr, int l, int r, int k) 
+    { 
+        
+        int partition = partition(arr,l,r);
+        
+        if(partition == k-1)
+        {
+            return arr[partition];
+        }
+        else if(partition > k-1)
+            return kthSmallest(arr,l,partition-1,k);
+        else    
+            return kthSmallest(arr,partition+1,r,k);
+        
+        
+    } 
+}
