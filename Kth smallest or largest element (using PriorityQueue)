@@ -28,6 +28,8 @@ public static int kthSmallest(int[] arr, int l, int r, int k)
         {
             pq.poll();
         }
+        
+        return pq.peek();
     }
 }
         
