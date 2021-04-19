@@ -1,0 +1,38 @@
+Given a string without spaces, the task is to remove duplicates from it.
+
+Note: The original order of characters must be kept the same. 
+
+Example 1:
+
+Input: S = "zvvo"
+Output: "zvo"
+Explanation: Only keep the first
+occurrence
+Example 2:
+
+Input: S = "gfg"
+Output: gf
+Explanation: Only keep the first
+occurrence
+
+
+class Solution {
+    String removeDups(String str) {
+        // code here
+        HashSet<Character> set = new HashSet<>();
+        
+        String result="";
+        
+        for(int i=0;i<str.length();i++)
+        {
+            if(!set.contains(str.charAt(i)))
+            {
+                set.add(str.charAt(i));
+                result = result + str.charAt(i);
+            }
+                
+        }
+        
+        return result;
+    }
+}
