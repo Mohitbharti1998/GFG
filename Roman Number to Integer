@@ -1,0 +1,70 @@
+Given a string in roman no format (s)  your task is to convert it to an integer . Various symbols and their values are given below.
+I 1
+V 5
+X 10
+L 50
+C 100
+D 500
+M 1000
+
+Example 1:
+
+Input:
+s = V
+Output: 5
+Example 2:
+
+Input:
+s = III 
+Output: 3
+
+
+Solution:-
+
+class RomanToNumber {
+    // Finds decimal value of a given roman numeral
+    
+    public int values(char val)
+    {
+        if(val == 'I')
+            return 1;
+        if(val == 'V')
+            return 5;
+        if(val == 'X')
+            return 10;
+        if(val == 'L')
+            return 50;
+        if(val == 'C')
+            return 100;
+        if(val == 'D')
+            return 500;
+        if(val == 'M')
+            return 1000;
+        return -1;
+    }
+    
+    public int romanToDecimal(String str) {
+        // code here
+        
+        int n = str.length();
+        
+        int ans = 0;
+        
+        for(int i=0;i<n-1;i++)
+        {
+            if(values(str.charAt(i)) >= values(str.charAt(i+1)))
+            {
+                ans = ans + values(str.charAt(i));
+            }
+            else
+            {
+                ans = ans - values(str.charAt(i));
+            }
+          
+        }
+        
+        ans = ans + values(str.charAt(n-1));
+        
+        return ans;
+    }
+}
