@@ -19,34 +19,30 @@ Solution:-
 
 class Solution
 {
-    static int atoi(String str)
+    int atoi(String str)
     {
         int result = 0;
         
+        int sign = 1;
+        
+        int i=0;
+        
         if(str.charAt(0) == '-')
         {
-            for(int i=1;i<str.length();i++)
-            {
-                if(str.charAt(i) > 57 || str.charAt(i) < 48)
-                    return -1;
-                int number = 57 - str.charAt(i);
-                result = result * 10 + number;
-            }
-            
-            int sub = (int)Math.pow(10, str.length()-1) - 1;
-            return result - sub;
+            sign = -1;
+            i++;
         }
         
-        for(int i=0;i<str.length();i++)
+        for(;i<str.length();i++)
         {
-            if(str.charAt(i) > 57 || str.charAt(i) < 48)
+            if(str.charAt(i) > '9' || str.charAt(i) < '0')
                 return -1;
-            int number = str.charAt(i) - 48;
+            int number = str.charAt(i) - '0';
             result = result * 10 + number;
             
             
         }
         
-        return result;
+        return sign * result;
     }
 }
