@@ -1,0 +1,69 @@
+Complete the function to find spiral order traversal of a tree. 
+
+Input:
+           10
+         /     \
+        20     30
+      /    \
+    40     60
+Output: 10 20 30 60 40 
+
+
+
+
+Solution:- 
+
+class Spiral
+{
+    //Function to return a list containing the level order 
+    //traversal in spiral form.	
+    ArrayList<Integer> findSpiral(Node root) 
+    {
+        // Your code here
+        
+        if(root == null)
+            return new ArrayList<>();
+        
+        ArrayList<Integer> list =  new ArrayList<>();
+        
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.add(root);
+        
+        int check = 1;
+        
+        while(!queue.isEmpty())
+        {
+            int n = queue.size();
+            
+            ArrayList<Integer> rev = new ArrayList<>();
+            
+            
+            for(int i=1;i<=n;i++)
+            {
+                Node rv = queue.removeFirst();
+                
+                rev.add(rv.data);
+                
+                if(rv.left != null)
+                    queue.add(rv.left);
+                if(rv.right != null)
+                    queue.add(rv.right);
+                
+            }
+            if(check%2 != 0)
+            {
+                Collections.reverse(rev);
+                list.addAll(rev);
+            }
+            else
+            {
+                list.addAll(rev);
+            }
+            check++;
+        }
+        
+        return list;
+        
+        
+    }
+}
