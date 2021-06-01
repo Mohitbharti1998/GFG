@@ -1,0 +1,40 @@
+Given a Binary Tree. Check whether it is Symmetric or not, i.e. whether the binary tree is a Mirror image of itself or not.
+
+Example 1:
+
+Input:
+         5
+       /   \
+      1     1
+     /       \
+    2         2
+Output: True
+Explanation: Tree is mirror image of
+itself i.e. tree is symmetric
+
+
+
+Solution:-
+
+class GfG
+{
+    // return true/false denoting whether the tree is Symmetric or not
+    
+    static boolean isMirror(Node root1,Node root2)
+    {
+        if(root1 == null && root2 == null)
+            return true;
+        if(root1 != null && root2 != null && root1.data == root2.data)
+            return isMirror(root1.left,root2.right) && isMirror(root1.right,root2.left);
+            
+        return false;
+    }
+    
+    
+    public static boolean isSymmetric(Node root)
+    {
+        // add your code here;
+        return isMirror(root,root);
+        
+    }
+}
