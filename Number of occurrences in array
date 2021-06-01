@@ -1,0 +1,29 @@
+class Solution
+{
+    
+    public static void main(String args[])
+    {
+        int arr[] = {2,3,4,2,1,5,3,8,11,7};
+        
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        for(int i=0;i<arr.length;i++)
+        {
+            if(map.containsKey(arr[i]))
+            {
+                int ov = map.remove(arr[i]);
+                int nv = ov+1;
+                map.put(arr[i],nv);
+            }
+            else
+            {
+                map.put(arr[i],1);
+            }
+        }
+        
+        System.out.println(map);
+        
+        
+        
+    }
+}
