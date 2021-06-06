@@ -1,0 +1,60 @@
+Given an expression string x. Examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.
+For example, the function should return 'true' for exp = “[()]{}{[()()]()}” and 'false' for exp = “[(])”.
+
+Example 1:
+
+Input:
+{([])}
+Output: 
+true
+Explanation: 
+{ ( [ ] ) }. Same colored brackets can form 
+balaced pairs, with 0 number of 
+unbalanced bracket.
+
+
+
+
+Solution:-
+
+
+class Solution
+{
+    //Function to check if brackets are balanced or not.
+    static boolean ispar(String x)
+    {
+        // add your code heres
+        
+        Stack<Character> stack = new Stack<Character>();     
+        
+        
+        for(int i=0;i<x.length();i++)
+        {
+            if(x.charAt(i) =='{' || x.charAt(i) =='(' || x.charAt(i) =='[')
+            {
+                stack.push(x.charAt(i));
+            }
+            else if(x.charAt(i) == '}' && !stack.isEmpty() && stack.peek() == '{' )
+            {
+                stack.pop();
+            }
+            else if(x.charAt(i) == ')' && !stack.isEmpty() && stack.peek() == '(')
+            {
+                stack.pop();
+            }
+            else if(x.charAt(i) == ']' && !stack.isEmpty() && stack.peek() == '[')
+            {
+                stack.pop();
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        if(stack.isEmpty())
+            return true;
+            
+        return false;
+    }
+}
