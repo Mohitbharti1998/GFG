@@ -1,0 +1,50 @@
+
+import java.util.*;
+
+class main {
+    
+    
+    static int maximumSquare(int[][] m)
+    {
+        int r = m.length;
+        int c = m[0].length;
+        
+        int[][] dp = new int[r+1][c+1];
+        
+        int largest = 0;
+        
+        for(int i=1;i<=r;i++)
+        {
+            for(int j=1;j<=c;j++)
+            {
+                if(m[i-1][j-1] == 1)
+                {
+                    dp[i][j] = 1 + Math.min(dp[i-1][j],Math.min(dp[i][j-1],dp[i-1][j-1]));
+                    if(largest < dp[i][j])
+                        largest = dp[i][j];
+                }
+                else{
+                    dp[i][j]=0;
+                }
+                
+            }
+        }
+        
+        
+        return largest*largest;
+             
+    }
+    
+	public static void main (String[] args) {
+	    
+	    int[][] m = {{0, 1, 1, 0, 1},
+                    {1, 1, 0, 1, 0},
+                    {0, 1, 1, 1, 0},
+                    {1, 1, 1, 1, 0},
+                    {1, 1, 1, 1, 1},
+                    {0, 0, 0, 0, 0}};
+	    System.out.println(maximumSquare(m));
+	    
+	   
+	}
+}
